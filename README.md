@@ -1,5 +1,7 @@
 # Azure Resource Manager (ARM) Template: CloudOut to Azure
 
+This repository contains an Azure Resource Manager (ARM) Template designed to help complete the Azure configuration processed required for the Rubrik CloudOut using Azure Blob Storage for archival.
+
 ## :blue_book: Documentation
 
 Here are some resources to get you started! If you find any challenges from this project are not properly documented or are unclear, please raise an issueand let us know! This is a fun, safe environment - don't worry if you're a GitHub newbie! :heart:
