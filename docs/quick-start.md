@@ -1,19 +1,15 @@
-# Quick Start: AWS CloudFormation Template for Rubrik CloudOut
+# Quick Start: Azure Resource Manager (ARM) Template for Rubrik CloudOut
 
-Walkthrough for commpleting the AWS configuration process required for the Rubrik CloudOut to S3.
+Walkthrough for commpleting the Azure Storage Account configuration process required for the Rubrik CloudOut to Azure.
 
 The following tasks are completed during the workflow:
 
-* A new IAM user is created* (Access and Secret Keys generated)
-* A new inline IAM policy is created for the user
-* S3 bucket is created*
-* A new KMS key is created (optional)
-
-_* The template can also consume a previously created IAM User or S3 Bucket_
+* A new storage account is created (Access and Secret Keys generated)
+* A new blob container is created within the storage account
 
 ![Template Design](/docs/img/rubrik_cloudout-designer.png)
 
-## CloudFormation Stack
+## Loading the ARM Template
 
 Navigate to **Services** > **CloudFormation** > **Stacks** and select **Create Stack**. 
 
