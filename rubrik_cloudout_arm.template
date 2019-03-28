@@ -1,0 +1,75 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "String",
+            "description": "The name of a storage account to create."
+        },
+        "accountType": {
+            "type": "String",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS"
+            ],
+            "description": "The type of replication to use for the storage account."
+        },
+        "storageTier": {
+            "type": "String",
+            "allowedValues": [
+                "Hot",
+                "Cool"
+            ],
+            "description": "The storage account access tier."
+        },
+        "containerName": {
+            "type": "String",
+            "description": "The name of the blob container to create within the storage account."
+
+        }
+    },
+    "variables": {
+        "storageAccount": {
+            "name": "[parameters('storageAccountName')]"
+        },
+        "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccount').name)]",
+        "apiVersion": "[providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "[parameters('accountType')]"
+            },
+            "kind": "BlobStorage",
+            "name": "[parameters('storageAccountName')]",
+            "apiVersion": "2018-02-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "accessTier": "[parameters('storageTier')]",
+                "supportsHttpsTrafficOnly": "false"
+            },
+            "resources": [
+                {
+                    "type": "blobServices/containers",
+                    "name": "[concat('default/',parameters('containerName'))]",
+                    "apiVersion": "2018-03-01-preview",
+                    "dependsOn": [
+                        "[parameters('storageAccountName')]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "storageAccountKey": {
+            "type": "String",
+            "value": "[listKeys(variables('resourceId'), variables('apiVersion')).keys[0].value]"
+        },
+        "storageAccountEndpoint": {
+            "type": "String",
+            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccount').name, ';AccountKey=', listKeys(variables('resourceId'), variables('apiVersion')).keys[0].value, ';EndpointSuffix=core.windows.net')]"
+        }
+    }
+}
