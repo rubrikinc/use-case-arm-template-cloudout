@@ -3,8 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "type": "String",
-            "description": "The name of a storage account to create."
+            "type": "String"
         },
         "accountType": {
             "type": "String",
@@ -12,20 +11,17 @@
                 "Standard_LRS",
                 "Standard_GRS",
                 "Standard_RAGRS"
-            ],
-            "description": "The type of replication to use for the storage account."
+            ]
         },
         "storageTier": {
             "type": "String",
             "allowedValues": [
                 "Hot",
                 "Cool"
-            ],
-            "description": "The storage account access tier."
+            ]
         },
         "containerName": {
-            "type": "String",
-            "description": "The name of the blob container to create within the storage account."
+            "type": "String"
 
         }
     },
@@ -53,7 +49,7 @@
             "resources": [
                 {
                     "type": "blobServices/containers",
-                    "name": "[concat('default/',parameters('containerName'))]",
+                    "name": "[parameters('containerName')]",
                     "apiVersion": "2018-03-01-preview",
                     "dependsOn": [
                         "[parameters('storageAccountName')]"
@@ -63,13 +59,18 @@
         }
     ],
     "outputs": {
+        "storageAccountName": {
+            "type": "String",
+            "value": "[parameters('storageAccountName')]"
+        },
+        "containerName": {
+            "type": "String",
+            "value": "[parameters('containerName')]"
+        },
         "storageAccountKey": {
             "type": "String",
             "value": "[listKeys(variables('resourceId'), variables('apiVersion')).keys[0].value]"
-        },
-        "storageAccountEndpoint": {
-            "type": "String",
-            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccount').name, ';AccountKey=', listKeys(variables('resourceId'), variables('apiVersion')).keys[0].value, ';EndpointSuffix=core.windows.net')]"
         }
+
     }
 }
