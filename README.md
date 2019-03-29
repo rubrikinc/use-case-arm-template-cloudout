@@ -1,8 +1,6 @@
-# use-case-arm
+# Azure Resource Manager (ARM) Template: CloudOut to Azure
 
-## :hammer: Installation
-
-## :mag: Example
+This repository contains an Azure Resource Manager (ARM) Template designed to help complete the Azure configuration processed required for the Rubrik CloudOut using Azure Blob Storage for archival.
 
 ## :blue_book: Documentation
 
@@ -11,9 +9,17 @@ Here are some resources to get you started! If you find any challenges from this
 * [Quick Start Guide](/docs/quick-start.md)
 * [Rubrik API Documentation](https://github.com/rubrikinc/api-documentation)
 
+# :white_check_mark: Prerequisites
+
+There are a few services you'll need in order to get this project off the ground:
+
+* Azure Resource Manager - this service allows you to configure CloudOut via a template
+* [Template for CloudOut to Azure](rubrik_cloudout_arm.template) - template for configuring CloudOut to Azure
+* Rubrik CDM 4.0 or later - the platform that protects provisioned workloads
+
 ## :muscle: How You Can Help
 
-We glady welcome contributions from the community. From updating the documentation to adding more functions for Python, all ideas are welcome. Thank you in advance for all of your issues, pull requests, and comments! :star:
+We glady welcome contributions from the community. From updating the documentation to requesting additional ARM templates, all ideas are welcome. Thank you in advance for all of your issues, pull requests, and comments! :star:
 
 * [Contributing Guide](CONTRIBUTING.md)
 * [Code of Conduct](CODE_OF_CONDUCT.md)
@@ -26,4 +32,4 @@ We glady welcome contributions from the community. From updating the documentati
 
 We encourage all contributors to become members. We aim to grow an active, healthy community of contributors, reviewers, and code owners. Learn more in our [Welcome to the Rubrik Build Community](https://github.com/rubrikinc/welcome-to-rubrik-build) page.
 
-We'd  love to hear from you! Email us: build@rubrik.com :love_letter:
+We'd love to hear from you! Email us: build@rubrik.com :love_letter:

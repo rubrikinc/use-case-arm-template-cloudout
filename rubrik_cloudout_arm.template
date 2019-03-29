@@ -1,0 +1,76 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "String"
+        },
+        "accountType": {
+            "type": "String",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_RAGRS"
+            ]
+        },
+        "storageTier": {
+            "type": "String",
+            "allowedValues": [
+                "Hot",
+                "Cool"
+            ]
+        },
+        "containerName": {
+            "type": "String"
+
+        }
+    },
+    "variables": {
+        "storageAccount": {
+            "name": "[parameters('storageAccountName')]"
+        },
+        "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccount').name)]",
+        "apiVersion": "[providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "[parameters('accountType')]"
+            },
+            "kind": "BlobStorage",
+            "name": "[parameters('storageAccountName')]",
+            "apiVersion": "2018-02-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "accessTier": "[parameters('storageTier')]",
+                "supportsHttpsTrafficOnly": "false"
+            },
+            "resources": [
+                {
+                    "type": "blobServices/containers",
+                    "name": "[parameters('containerName')]",
+                    "apiVersion": "2018-03-01-preview",
+                    "dependsOn": [
+                        "[parameters('storageAccountName')]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputs": {
+        "storageAccountName": {
+            "type": "String",
+            "value": "[parameters('storageAccountName')]"
+        },
+        "containerName": {
+            "type": "String",
+            "value": "[parameters('containerName')]"
+        },
+        "storageAccountKey": {
+            "type": "String",
+            "value": "[listKeys(variables('resourceId'), variables('apiVersion')).keys[0].value]"
+        }
+
+    }
+}
