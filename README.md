@@ -15,11 +15,11 @@ There are a few services you'll need in order to get this project off the ground
 
 * Azure Resource Manager - this service allows you to configure CloudOut via a template
 * [Template for CloudOut to Azure](rubrik_cloudout_arm.template) - template for configuring CloudOut to Azure
-* Rubrik CDM 4.0+ - the platform that protects provisioned workloads
+* Rubrik CDM 4.0 or later - the platform that protects provisioned workloads
 
 ## :muscle: How You Can Help
 
-We glady welcome contributions from the community. From updating the documentation to requsting additional ARM templates, all ideas are welcome. Thank you in advance for all of your issues, pull requests, and comments! :star:
+We glady welcome contributions from the community. From updating the documentation to requesting additional ARM templates, all ideas are welcome. Thank you in advance for all of your issues, pull requests, and comments! :star:
 
 * [Contributing Guide](CONTRIBUTING.md)
 * [Code of Conduct](CODE_OF_CONDUCT.md)
