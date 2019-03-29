@@ -32,4 +32,4 @@ We glady welcome contributions from the community. From updating the documentati
 
 We encourage all contributors to become members. We aim to grow an active, healthy community of contributors, reviewers, and code owners. Learn more in our [Welcome to the Rubrik Build Community](https://github.com/rubrikinc/welcome-to-rubrik-build) page.
 
-We'd  love to hear from you! Email us: build@rubrik.com :love_letter:
+We'd love to hear from you! Email us: build@rubrik.com :love_letter:
