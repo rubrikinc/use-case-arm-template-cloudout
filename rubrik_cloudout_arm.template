@@ -61,11 +61,11 @@
     "outputs": {
         "storageAccountName": {
             "type": "String",
-            "value": "[parameters('storageAccountName')]"
+            "value": "[toLower(parameters('storageAccountName'))]"
         },
         "containerName": {
             "type": "String",
-            "value": "[parameters('containerName')]"
+            "value": "[toLower(parameters('containerName'))]"
         },
         "storageAccountKey": {
             "type": "String",
