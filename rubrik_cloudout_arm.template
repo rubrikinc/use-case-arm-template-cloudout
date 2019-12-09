@@ -39,7 +39,7 @@
                 "name": "[parameters('accountType')]"
             },
             "kind": "BlobStorage",
-            "name": "[parameters('storageAccountName')]",
+            "name": "[toLower(parameters('storageAccountName'))]",
             "apiVersion": "2018-02-01",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -49,7 +49,7 @@
             "resources": [
                 {
                     "type": "blobServices/containers",
-                    "name":  "[concat('default/', parameters('containerName'))]",
+                    "name":  "[toLower(concat('default/', parameters('containerName')))]",
                     "apiVersion": "2018-03-01-preview",
                     "dependsOn": [
                         "[parameters('storageAccountName')]"
@@ -61,11 +61,11 @@
     "outputs": {
         "storageAccountName": {
             "type": "String",
-            "value": "[parameters('storageAccountName')]"
+            "value": "[toLower(parameters('storageAccountName'))]"
         },
         "containerName": {
             "type": "String",
-            "value": "[parameters('containerName')]"
+            "value": "[toLower(parameters('containerName'))]"
         },
         "storageAccountKey": {
             "type": "String",
